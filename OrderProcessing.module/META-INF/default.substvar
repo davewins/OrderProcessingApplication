@@ -75,7 +75,7 @@
 		</globalVariable>
 		<globalVariable>
 			<name>EMSURL</name>
-			<value>tcp://192.168.1.30:9011</value>
+			<value></value>
 			<deploymentSettable>false</deploymentSettable>
 			<serviceSettable>false</serviceSettable>
 			<type>String</type>
@@ -84,7 +84,7 @@
 		</globalVariable>
 		<globalVariable>
 			<name>EMSUserName</name>
-			<value>admin</value>
+			<value></value>
 			<deploymentSettable>false</deploymentSettable>
 			<serviceSettable>false</serviceSettable>
 			<type>String</type>
@@ -93,7 +93,7 @@
 		</globalVariable>
 		<globalVariable>
 			<name>EMSPassword</name>
-			<value>#!^0X/0lIDl8mGDfzVx142YWSBOT3U3g47i</value>
+			<value>#!^D673TJ5dt8AQV8VO+o7uWw==</value>
 			<deploymentSettable>false</deploymentSettable>
 			<serviceSettable>false</serviceSettable>
 			<type>Password</type>
@@ -133,6 +133,33 @@
 			<deploymentSettable>false</deploymentSettable>
 			<serviceSettable>false</serviceSettable>
 			<type>Integer</type>
+			<isOverride>false</isOverride>
+			<useLookupValue>false</useLookupValue>
+		</globalVariable>
+		<globalVariable>
+			<name>OrdersQueue</name>
+			<value>Orders</value>
+			<deploymentSettable>false</deploymentSettable>
+			<serviceSettable>false</serviceSettable>
+			<type>String</type>
+			<isOverride>false</isOverride>
+			<useLookupValue>false</useLookupValue>
+		</globalVariable>
+		<globalVariable>
+			<name>LogMessageQueue</name>
+			<value>LogMessage</value>
+			<deploymentSettable>false</deploymentSettable>
+			<serviceSettable>false</serviceSettable>
+			<type>String</type>
+			<isOverride>false</isOverride>
+			<useLookupValue>false</useLookupValue>
+		</globalVariable>
+		<globalVariable>
+			<name>StockCheckQueue</name>
+			<value>StockCheck</value>
+			<deploymentSettable>false</deploymentSettable>
+			<serviceSettable>false</serviceSettable>
+			<type>String</type>
 			<isOverride>false</isOverride>
 			<useLookupValue>false</useLookupValue>
 		</globalVariable>

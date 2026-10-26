@@ -3,6 +3,7 @@
 **Date:** 2026-10-26
 **Scope:** `OrderProcessing.module` (11 BW processes, shared resources, module config)
 **Method:** Reviewed against the BW6 quality ruleset (`bw6-rules`), ranked by severity.
+**Remediation (2026-10-26):** #1 and #5 fixed via the `bwdesign` CLI (module validates clean); #6 blocked by tooling; #2/#3/#4/#7 deferred by decision. See per-finding status below.
 
 > **Context:** This is a *simulation/demo* application — backend database work is faked with
 > randomized sleep timers. Some findings below are intentional for showcase purposes. However,
@@ -13,15 +14,15 @@
 
 ## Summary
 
-| # | Finding | Rule | Severity |
-|---|---------|------|----------|
-| 1 | Committed EMS credentials in `default.substvar` | — (secret hygiene) | 🔴 High |
-| 2 | Inbound REST binding has no security policy | `BindingShouldHavePolicyAssociated` | 🔴 High |
-| 3 | HTTP connector is plaintext (no TLS) | `HttpConnectorShouldHaveConfidentiality` | 🟠 Medium |
-| 4 | JMS connection is non-SSL | `JMSConnectorShouldHaveConfidentiality` | 🟠 Medium |
-| 5 | Hardcoded JMS destinations | `JMSHardCoded` | 🟠 Medium |
-| 6 | No process descriptions | `ProcessNoDescription` | 🟡 Low |
-| 7 | No real unit tests | `ProcessWithoutTest` | 🟡 Low |
+| # | Finding | Rule | Severity | Status |
+|---|---------|------|----------|--------|
+| 1 | Committed EMS credentials in `default.substvar` | — (secret hygiene) | 🔴 High | ✅ Fixed |
+| 2 | Inbound REST binding has no security policy | `BindingShouldHavePolicyAssociated` | 🔴 High | ⏸ Deferred |
+| 3 | HTTP connector is plaintext (no TLS) | `HttpConnectorShouldHaveConfidentiality` | 🟠 Medium | ⏸ Deferred |
+| 4 | JMS connection is non-SSL | `JMSConnectorShouldHaveConfidentiality` | 🟠 Medium | ⏸ Deferred |
+| 5 | Hardcoded JMS destinations | `JMSHardCoded` | 🟠 Medium | ✅ Fixed |
+| 6 | No process descriptions | `ProcessNoDescription` | 🟡 Low | ⛔ Blocked (tooling) |
+| 7 | No real unit tests | `ProcessWithoutTest` | 🟡 Low | ⏸ Deferred |
 
 ---
 
@@ -38,6 +39,10 @@ The module default profile ships live-looking connection secrets committed to gi
 
 **Recommendation:** Blank these defaults (or use obvious placeholders) and supply the real values
 at deploy time via TIBCO Platform application properties. Rotate the committed password.
+
+> **✅ Fixed (2026-10-26, `bwdesign`):** `EMSUserName` and `EMSURL` defaults blanked; `EMSPassword`
+> cleared (the field now holds BW's obfuscation of an empty string — the real secret is removed).
+> The secret remains in prior git history, so **rotate it** if it was ever real.
 
 ### 2. Inbound REST binding has no security policy 🔴
 **File:** `OrderProcessing.module/META-INF/module.bwm` · **Rule:** `BindingShouldHavePolicyAssociated`
@@ -87,6 +92,10 @@ Queue names are literals inside the activities instead of module properties:
 
 **Recommendation:** Move queue names to module properties so they are environment-configurable.
 
+> **✅ Fixed (2026-10-26, `bwdesign`):** Added string module properties `OrdersQueue` (`Orders`),
+> `LogMessageQueue` (`LogMessage`), `StockCheckQueue` (`StockCheck`) and bound each JMS activity's
+> `destinationName` to its property via `attributeBindings`. Module validates clean.
+
 > **Good, for contrast:** the HTTP endpoint host/port *are* property-driven (`BW.HOST.NAME`, `Port`),
 > satisfying `EndpointURIFromHTTPBindingSetUsingProperty`, and the JMS provider URL/credentials are
 > property-bound in the shared resource.
@@ -99,6 +108,11 @@ Queue names are literals inside the activities instead of module properties:
 **Rule:** `ProcessNoDescription`
 
 All 11 processes have an empty `description=""`.
+
+> **⛔ Blocked (2026-10-26):** `bwdesign` exposes no command to set a process description, and the
+> sanctioned fallback (BW Studio MCP server) is disabled by enterprise policy on this machine.
+> Per `AGENTS.md` the `.bwp` files must not be hand-edited, so this is left for Studio or a future
+> MCP-enabled session.
 
 ### 7. No real unit tests 🟡
 **Rule:** `ProcessWithoutTest`

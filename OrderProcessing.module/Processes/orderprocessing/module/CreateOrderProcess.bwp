@@ -692,7 +692,7 @@
     <tibex:ProcessTemplateConfigurations/>
     <notation:Diagram measurementUnit="Pixel" type="BWProcess"
         xmlns:bwnotation="http://tns.tibco.com/bw/runtime/BWNotation"
-        xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.3/notation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
         <children type="2001">
             <children type="5001">
                 <element href="//0/@process"/>
@@ -1243,6 +1243,9 @@
         <bpws:variable element="ns5:Element" name="InventoryCheck" sca-bpel:internal="true"/>
         <bpws:variable element="ns1:Element"
             name="NoStockAvailable-input" sca-bpel:internal="true"/>
+        <bpws:variable name="OrdersQueue" sca-bpel:hotUpdate="false"
+            sca-bpel:privateProperty="true" sca-bpel:property="yes"
+            tibex:propertySource="OrdersQueue" type="xsd:string"/>
     </bpws:variables>
     <bpws:extensions>
         <bpws:extension mustUnderstand="no" namespace="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
@@ -1251,6 +1254,7 @@
         <bpws:extension mustUnderstand="no" namespace="http://docs.oasis-open.org/ns/opencsa/sca/200912"/>
         <bpws:extension mustUnderstand="no" namespace="http://ns.tibco.com/bw/property"/>
         <bpws:extension mustUnderstand="no" namespace="http://www.tibco.com/bpel/2007/extensions"/>
+        <bpws:extension mustUnderstand="no" namespace="http://www.eclipse.org/gmf/runtime/1.0.3/notation"/>
     </bpws:extensions>
     <bpws:scope name="scope">
         <bpws:flow name="flow">
@@ -1395,6 +1399,9 @@
                             xmlns:activityconfig="http://tns.tibco.com/bw/model/activityconfig"
                             xmlns:bwext="http://tns.tibco.com/bw/model/core/bwext"
                             xmlns:jms="http://ns.tibco.com/bw/palette/jms" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                            <attributeBindings
+                                bindingType="moduleProperty"
+                                eAttributeName="destinationName" processProperty="OrdersQueue"/>
                             <activityConfig>
                                 <properties name="config" xsi:type="activityconfig:EMFProperty">
                                     <type href="http://ns.tibco.com/bw/palette/jms#//JMSSenderActivityConfiguration"/>

@@ -68,6 +68,9 @@
   <sca:property xmi:id="_Tg8JgM7KEfGDP8aPwuD3pg" name="BW.DOMAIN.NAME" type="XMLSchema:string" scalable="true"/>
   <sca:property xmi:id="_Tg9-sM7KEfGDP8aPwuD3pg" name="BW.APPSPACE.NAME" type="XMLSchema:string" scalable="true"/>
   <sca:property xmi:id="_IfxngM7dEfGDP8aPwuD3pg" name="Port" type="XMLSchema:int" scaext:simpleValue="" publicAccess="true" scalable="true"/>
+  <sca:property xmi:id="_d0VGENFVEfGPAfyKho66Og" name="OrdersQueue" type="XMLSchema:string" publicAccess="true" scalable="true"/>
+  <sca:property xmi:id="_4AZxYNFVEfGHs50os3-ClA" name="LogMessageQueue" type="XMLSchema:string" publicAccess="true" scalable="true"/>
+  <sca:property xmi:id="_4IrjoNFVEfGHs50os3-ClA" name="StockCheckQueue" type="XMLSchema:string" publicAccess="true" scalable="true"/>
   <sca:component xmi:id="_gICfgBFZEfCyX9-kGgCMZg" name="ComponentProcess" compositeext:version="1.0.0.qualifier">
     <scaext:implementation xsi:type="BW:BWComponentImplementation" xmi:id="_gICfgRFZEfCyX9-kGgCMZg" processName="orderprocessing.module.OrdersRESTInterface"/>
     <sca:service xmi:id="_ZKuxUBFoEfCYqO9K6KKv-A" name="orders">
