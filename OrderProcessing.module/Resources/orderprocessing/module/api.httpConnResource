@@ -2,5 +2,6 @@
 <jndi:namedResource xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:httpconnector="http://xsd.tns.tibco.com/bw/models/sharedresource/httpconnector" xmlns:jndi="http://xsd.tns.tibco.com/amf/models/sharedresource/jndi" xmi:id="_ZLcjARFoEfCYqO9K6KKv-A" name="orderprocessing.module.api" type="httpconnector:HttpConnectorConfiguration">
   <jndi:configuration xsi:type="httpconnector:HttpConnectorConfiguration" xmi:id="_ZLcjAhFoEfCYqO9K6KKv-A">
     <substitutionBindings xmi:id="_ZLcjAxFoEfCYqO9K6KKv-A" template="host" propName="BW.HOST.NAME"/>
+    <substitutionBindings xmi:id="_FsKQYM7dEfGDP8aPwuD3pg" template="port" propName="Port"/>
   </jndi:configuration>
 </jndi:namedResource>

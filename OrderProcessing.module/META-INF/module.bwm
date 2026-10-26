@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <sca:composite xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:BW="http://xsd.tns.tibco.com/amf/models/sca/implementationtype/BW" xmlns:JsonSchema="/api/T1743783650328Converted/JsonSchema" xmlns:XMLSchema="http://www.w3.org/2001/XMLSchema" xmlns:compositeext="http://schemas.tibco.com/amx/3.0/compositeext" xmlns:property="http://ns.tibco.com/bw/property" xmlns:rest="http://xsd.tns.tibco.com/bw/models/binding/rest" xmlns:sca="http://www.osoa.org/xmlns/sca/1.0" xmlns:scact="http://xsd.tns.tibco.com/amf/models/sca/componentType" xmlns:scaext="http://xsd.tns.tibco.com/amf/models/sca/extensions" xmi:id="_f9324BFZEfCyX9-kGgCMZg" targetNamespace="http://tns.tibco.com/bw/composite/OrderProcessing.module" name="OrderProcessing.module" compositeext:version="1.0.0" compositeext:formatVersion="2">
+  <mcpStarterConfig xmi:id="_0TV-sM7BEfG-apB_npyoTw"/>
   <sca:service xmi:id="_ZK37QBFoEfCYqO9K6KKv-A" name="orders" promote="ComponentProcess/orders">
     <sca:interface.wsdl xmi:id="_ZLKPIBFoEfCYqO9K6KKv-A" interface="http://xmlns.example.com/20250404153415PLT#wsdl.interface(orders)" scaext:wsdlLocation="../Processes/orderprocessing/module/Process.bwp"/>
     <scaext:binding xsi:type="rest:RestServiceBinding" xmi:id="_ZLUAIBFoEfCYqO9K6KKv-A" name="RestService" path="/api/orders" docBasePath="http://localhost:7777/OrderProcessing.module" docResourcePath="Orders" basePath="/api" connector="orderprocessing.module.api" structuredData="true" technologyVersion="2.0" implementation="Service Descriptors/OrdersAPI.json">
-      <operation xmi:id="_ZLUAIhFoEfCYqO9K6KKv-A" operationName="post" httpMethod="POST" responseStyle="element" requestStyle="element" outputPartName="item">
+      <operation xmi:id="_ZLUAIhFoEfCYqO9K6KKv-A" operationName="post" httpMethod="POST" responseStyle="element" requestStyle="element" outputPartName="item" tool="true">
         <responseStatus xmi:id="_ZMjWQBFoEfCYqO9K6KKv-A" statusCode="400" reasonPhrase="Invalid request payload." elementQName="JsonSchema:ErrorResponse"/>
         <responseStatus xmi:id="_ZMlLcRFoEfCYqO9K6KKv-A" statusCode="500" reasonPhrase="Internal server error (e.g., simulated backend failure)." elementQName="JsonSchema:ErrorResponse"/>
+        <restMcpTool xmi:id="_SsLokM7GEfGDP8aPwuD3pg" scope="Read"/>
       </operation>
       <parameters xmi:id="_ZMlLchFoEfCYqO9K6KKv-A"/>
       <import xmi:id="_ZMlLcBFoEfCYqO9K6KKv-A" importType="http://www.w3.org/2001/XMLSchema" namespace="/api/T1743783650328Converted/JsonSchema"/>
@@ -16,14 +18,16 @@
   <sca:service xmi:id="_bMB6shFoEfCYqO9K6KKv-A" name="orders1" promote="ComponentProcess/orders1">
     <sca:interface.wsdl xmi:id="_bMB6thFoEfCYqO9K6KKv-A" interface="http://xmlns.example.com/20250404153415PLT#wsdl.interface(orders1)" scaext:wsdlLocation="../Processes/orderprocessing/module/Process.bwp"/>
     <scaext:binding xsi:type="rest:RestServiceBinding" xmi:id="_bMB6txFoEfCYqO9K6KKv-A" name="RestService1" path="/api/orders/{orderId}" docBasePath="http://localhost:7777/OrderProcessing.module" docResourcePath="Orders" basePath="/api" connector="orderprocessing.module.api" structuredData="true" technologyVersion="2.0" implementation="Service Descriptors/OrdersAPI.json">
-      <operation xmi:id="_bMLEoBFoEfCYqO9K6KKv-A" operationName="get" httpMethod="GET" responseStyle="element" outputPartName="item">
+      <operation xmi:id="_bMLEoBFoEfCYqO9K6KKv-A" operationName="get" httpMethod="GET" responseStyle="element" outputPartName="item" tool="true">
         <responseStatus xmi:id="_bMLEoxFoEfCYqO9K6KKv-A" statusCode="404" reasonPhrase="Order not found." elementQName="JsonSchema:ErrorResponse"/>
         <responseStatus xmi:id="_bMLEpRFoEfCYqO9K6KKv-A" statusCode="500" reasonPhrase="Internal server error (e.g., simulated database failure)." elementQName="JsonSchema:ErrorResponse"/>
+        <restMcpTool xmi:id="_T7mCAM7GEfGDP8aPwuD3pg" scope="Read"/>
       </operation>
-      <operation xmi:id="_bMLEoRFoEfCYqO9K6KKv-A" operationName="put" httpMethod="PUT" responseStyle="element" requestStyle="element" outputPartName="item">
+      <operation xmi:id="_bMLEoRFoEfCYqO9K6KKv-A" operationName="put" httpMethod="PUT" responseStyle="element" requestStyle="element" outputPartName="item" tool="true">
         <responseStatus xmi:id="_bMLEphFoEfCYqO9K6KKv-A" statusCode="400" reasonPhrase="Invalid request payload." elementQName="JsonSchema:ErrorResponse"/>
         <responseStatus xmi:id="_bMLEpxFoEfCYqO9K6KKv-A" statusCode="404" reasonPhrase="Order not found." elementQName="JsonSchema:ErrorResponse"/>
         <responseStatus xmi:id="_bMLEqBFoEfCYqO9K6KKv-A" statusCode="500" reasonPhrase="Internal server error (e.g., simulated backend failure)." elementQName="JsonSchema:ErrorResponse"/>
+        <restMcpTool xmi:id="_UK_I4M7GEfGDP8aPwuD3pg" scope="Read"/>
       </operation>
       <parameters xmi:id="_bMLEqRFoEfCYqO9K6KKv-A">
         <parameterMapping xmi:id="_bMLEqhFoEfCYqO9K6KKv-A" parameterName="orderId" parameterType="Path" dataType="string" required="true" description="Identifier of the order to retrieve."/>
@@ -36,9 +40,10 @@
   <sca:service xmi:id="_dm3lchFoEfCYqO9K6KKv-A" name="orders-customer" promote="ComponentProcess/orders-customer">
     <sca:interface.wsdl xmi:id="_dm3ldhFoEfCYqO9K6KKv-A" interface="http://xmlns.example.com/20250404153415PLT#wsdl.interface(orders-customer)" scaext:wsdlLocation="../Processes/orderprocessing/module/Process.bwp"/>
     <scaext:binding xsi:type="rest:RestServiceBinding" xmi:id="_dm3ldxFoEfCYqO9K6KKv-A" name="RestService2" path="/api/orders/customer/{customerId}" docBasePath="http://localhost:7777/OrderProcessing.module" docResourcePath="Orders" basePath="/api" connector="orderprocessing.module.api" structuredData="true" technologyVersion="2.0" implementation="Service Descriptors/OrdersAPI.json">
-      <operation xmi:id="_dm_hQBFoEfCYqO9K6KKv-A" operationName="get" httpMethod="GET" responseStyle="array" outputPartName="item">
+      <operation xmi:id="_dm_hQBFoEfCYqO9K6KKv-A" operationName="get" httpMethod="GET" responseStyle="array" outputPartName="item" tool="true">
         <responseStatus xmi:id="_dnBWcBFoEfCYqO9K6KKv-A" statusCode="404" reasonPhrase="Customer not found (if you choose to implement this level of simulation)." elementQName="JsonSchema:ErrorResponse"/>
         <responseStatus xmi:id="_dnBWchFoEfCYqO9K6KKv-A" statusCode="500" reasonPhrase="Internal server error (e.g., simulated database failure)." elementQName="JsonSchema:ErrorResponse"/>
+        <restMcpTool xmi:id="_VeSj0M7GEfGDP8aPwuD3pg" scope="Read"/>
       </operation>
       <parameters xmi:id="_dnBWcxFoEfCYqO9K6KKv-A">
         <parameterMapping xmi:id="_dnBWdBFoEfCYqO9K6KKv-A" parameterName="customerId" parameterType="Path" dataType="string" required="true" description="Identifier of the customer to retrieve orders for."/>
@@ -59,6 +64,10 @@
   <sca:property xmi:id="_XXRioBV5EfCpG_csTpS_wg" name="EMSURL" type="XMLSchema:string" scaext:simpleValue="" publicAccess="true" scalable="true"/>
   <sca:property xmi:id="_2xUJ0CQuEfCz0qefG0tRFQ" name="EMSUserName" type="XMLSchema:string" publicAccess="true" scalable="true"/>
   <sca:property xmi:id="_5Zno0CQuEfCz0qefG0tRFQ" name="EMSPassword" type="property:password" scaext:simpleValue="#!^CN6INTLMXFEv7P71pS78MQ==" publicAccess="true" scalable="true"/>
+  <sca:property xmi:id="_Tg34EM7KEfGDP8aPwuD3pg" name="BW.DEPLOYMENTUNIT.TYPE" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_Tg8JgM7KEfGDP8aPwuD3pg" name="BW.DOMAIN.NAME" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_Tg9-sM7KEfGDP8aPwuD3pg" name="BW.APPSPACE.NAME" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_IfxngM7dEfGDP8aPwuD3pg" name="Port" type="XMLSchema:int" scaext:simpleValue="" publicAccess="true" scalable="true"/>
   <sca:component xmi:id="_gICfgBFZEfCyX9-kGgCMZg" name="ComponentProcess" compositeext:version="1.0.0.qualifier">
     <scaext:implementation xsi:type="BW:BWComponentImplementation" xmi:id="_gICfgRFZEfCyX9-kGgCMZg" processName="orderprocessing.module.OrdersRESTInterface"/>
     <sca:service xmi:id="_ZKuxUBFoEfCYqO9K6KKv-A" name="orders">

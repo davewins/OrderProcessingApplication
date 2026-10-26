@@ -8,6 +8,7 @@ nav:
   - Database Interactions: database-interactions.md
   - API Endpoints: api-endpoints.md
   - Troubleshooting: troubleshooting.md
+  - Code Review: code-review.md
 
 plugins:
   - techdocs-core

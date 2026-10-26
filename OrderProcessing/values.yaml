@@ -1,0 +1,70 @@
+appConfig:
+  appId: ''
+  buildId: ''
+  bwProfile: default.substvar
+  tags: ''
+appInit:
+  resources:
+    limits:
+      cpu: 100m
+      memory: 200Mi
+    requests:
+      cpu: 10m
+      memory: 10Mi
+appProps:
+  DW-Platform.substvar:
+    LogLevel: ''
+    EMSURL: ''
+    __SlAsH____SlAsH__OrderProcessing.module__SlAsH____SlAsH__LogLevel: INFO
+    __SlAsH____SlAsH__OrderProcessing.module__SlAsH____SlAsH__EMSURL: tcp://ems-emsactive.dw-dp.svc:9011,tcp://ems-ems.dw-dp.svc:9011
+    __SlAsH____SlAsH__OrderProcessing.module__SlAsH____SlAsH__EMSUserName: admin
+    EMSUserName: ''
+    __SlAsH____SlAsH__OrderProcessing.module__SlAsH____SlAsH__Port: '8282'
+  default.substvar:
+    __SlAsH____SlAsH__OrderProcessing.module__SlAsH____SlAsH__LogLevel: INFO
+    __SlAsH____SlAsH__OrderProcessing.module__SlAsH____SlAsH__EMSURL: tcp://192.168.1.30:9011
+    LogLevel: INFO
+    EMSURL: tcp://192.168.1.30:9011
+    __SlAsH____SlAsH__OrderProcessing.module__SlAsH____SlAsH__EMSUserName: '%%EMSUserName%%'
+    EMSUserName: admin
+    __SlAsH____SlAsH__OrderProcessing.module__SlAsH____SlAsH__Port: '8282'
+appSecrets:
+  DW-Platform.substvar:
+    __SlAsH____SlAsH__OrderProcessing.module__SlAsH____SlAsH__EMSPassword: '#!^0X/0lIDl8mGDfzVx142YWSBOT3U3g47i'
+    EMSPassword: ''
+  default.substvar:
+    __SlAsH____SlAsH__OrderProcessing.module__SlAsH____SlAsH__EMSPassword: '%%EMSPassword%%'
+    EMSPassword: '#!^0X/0lIDl8mGDfzVx142YWSBOT3U3g47i'
+autoscaling:
+  enabled: false
+bwapp:
+  resources:
+    limits:
+      cpu: '1'
+      memory: 4Gi
+    requests:
+      cpu: 250m
+      memory: 1Gi
+engineProps:
+  BW_ENGINE_STEPCOUNT: '-1'
+  BW_ENGINE_THREADCOUNT: '8'
+  BW_LOGGER_OVERRIDES: ROOT=ERROR
+  BW_OTEL_TRACES_ENABLED: 'false'
+engineSecrets: {}
+executionHistory:
+  enabled: false
+fluentBit:
+  enabled: true
+  resources:
+    limits:
+      cpu: 100m
+      memory: 100Mi
+    requests:
+      cpu: 10m
+      memory: 10Mi
+fullnameOverride: orderprocessing
+replicaCount: 0
+service:
+  ports:
+  - port: '8282'
+    targetPort: '8282'
