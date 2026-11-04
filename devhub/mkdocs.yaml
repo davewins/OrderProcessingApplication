@@ -1,0 +1,12 @@
+site_name: "OrderProcessing (BusinessWorks)"
+site_description: "Documentation generated from the OrderProcessing BusinessWorks project"
+nav:
+  - Overview: index.md
+  - Processes: processes.md
+  - Messaging: messaging.md
+  - API: api.md
+  - Resources and configuration: resources.md
+  - Schemas: schemas.md
+  - Findings: quality.md
+plugins:
+  - techdocs-core
