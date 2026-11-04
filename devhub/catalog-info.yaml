@@ -37,7 +37,7 @@ spec:
   owner: "group:default/tibco-imported"
   system: "order-management-system"
   providesApis: ["api:default/orderprocessing-ordersapi"]
-  dependsOn: ["resource:default/orderprocessing-queue-stockcheck","resource:default/orderprocessing-queue-logmessage","resource:default/orderprocessing-queue-orders","resource:default/orderprocessing-api","resource:default/orderprocessing-jmsconnectionresource"]
+  dependsOn: ["resource:default/ems-192-168-1-30-9011-queue-stockcheck","resource:default/ems-192-168-1-30-9011-queue-logmessage","resource:default/ems-192-168-1-30-9011-queue-orders","resource:default/orderprocessing-api","resource:default/orderprocessing-jmsconnectionresource"]
 ---
 apiVersion: backstage.io/v1alpha1
 kind: API
@@ -62,9 +62,9 @@ spec:
 apiVersion: backstage.io/v1alpha1
 kind: Resource
 metadata:
-  name: "orderprocessing-ems-broker"
-  title: "TIBCO EMS broker"
-  description: "Message broker used by OrderProcessing, taken from the project's deployment configuration."
+  name: "ems-192-168-1-30-9011"
+  title: "TIBCO EMS broker 192.168.1.30:9011"
+  description: "Shared TIBCO EMS broker at 192.168.1.30:9011. Defined by the import of OrderProcessing; other applications reference it."
   tags: [tibco-ems, messaging]
   tibco.developer.hub/topology:
     theme:
@@ -79,7 +79,7 @@ spec:
 apiVersion: backstage.io/v1alpha1
 kind: Resource
 metadata:
-  name: "orderprocessing-queue-stockcheck"
+  name: "ems-192-168-1-30-9011-queue-stockcheck"
   title: "StockCheck"
   description: "EMS queue StockCheck (named in a process). Produced by InventoryCheck. Consumed by StockCheck"
   tags: [tibco-ems, queue]
@@ -94,12 +94,12 @@ spec:
   type: jms-queue
   owner: "group:default/tibco-imported"
   system: "order-management-system"
-  dependsOn: ["resource:default/orderprocessing-ems-broker"]
+  dependsOn: ["resource:default/ems-192-168-1-30-9011"]
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Resource
 metadata:
-  name: "orderprocessing-queue-logmessage"
+  name: "ems-192-168-1-30-9011-queue-logmessage"
   title: "LogMessage"
   description: "EMS queue LogMessage (named in a process). Produced by Logger. Consumed by AuditLog"
   tags: [tibco-ems, queue]
@@ -114,12 +114,12 @@ spec:
   type: jms-queue
   owner: "group:default/tibco-imported"
   system: "order-management-system"
-  dependsOn: ["resource:default/orderprocessing-ems-broker"]
+  dependsOn: ["resource:default/ems-192-168-1-30-9011"]
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Resource
 metadata:
-  name: "orderprocessing-queue-orders"
+  name: "ems-192-168-1-30-9011-queue-orders"
   title: "Orders"
   description: "EMS queue Orders (named in a process). Produced by CreateOrderProcess"
   tags: [tibco-ems, queue]
@@ -133,7 +133,7 @@ spec:
   type: jms-queue
   owner: "group:default/tibco-imported"
   system: "order-management-system"
-  dependsOn: ["resource:default/orderprocessing-ems-broker"]
+  dependsOn: ["resource:default/ems-192-168-1-30-9011"]
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Resource
@@ -170,7 +170,7 @@ spec:
   type: "jms-connection"
   owner: "group:default/tibco-imported"
   system: "order-management-system"
-  dependsOn: ["resource:default/orderprocessing-ems-broker"]
+  dependsOn: ["resource:default/ems-192-168-1-30-9011"]
 ---
 apiVersion: backstage.io/v1alpha1
 kind: System
