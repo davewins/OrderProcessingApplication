@@ -15,6 +15,8 @@ TIBCO BusinessWorks Container Edition application OrderProcessing 1.0.0 with 11 
 | Activities | 23 |
 | REST operations | 4 |
 | Messaging destinations | 3 |
+| Outbound APIs called | 0 |
+| Input mappings | 117 |
 | API descriptors | 1 |
 | Shared resources | 2 |
 | Schemas | 7 |
@@ -38,7 +40,8 @@ TIBCO BusinessWorks Container Edition application OrderProcessing 1.0.0 with 11 
 ## Pages
 
 - [Processes](processes.md): triggers, call tree and per-process activity summary
-- [Messaging](messaging.md): queues and topics with their producers and consumers
+- [Messaging](messaging.md): queues, topics and endpoints (JMS, Kafka, FTL and others) with their producers and consumers
+- [Mappings](mappings.md): how data moves between systems and between activities
 - [API](api.md): endpoints and the process that implements each
 - [Resources and configuration](resources.md): shared resources, external dependencies and variables
 - [Schemas](schemas.md): the data contracts

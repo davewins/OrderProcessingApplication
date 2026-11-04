@@ -4,6 +4,7 @@ nav:
   - Overview: index.md
   - Processes: processes.md
   - Messaging: messaging.md
+  - Mappings: mappings.md
   - API: api.md
   - Resources and configuration: resources.md
   - Schemas: schemas.md

@@ -1,24 +1,25 @@
 # Messaging
 
-3 queues / topics used by the processes. Producers include request/reply senders.
+3 destinations (queues, topics, endpoints, subjects) used by the processes. Producers include request/reply senders.
 
-| Destination | Kind | Configuration variable | Producers | Consumers |
-|---|---|---|---|---|
-| `StockCheck` | queue | - | InventoryCheck | StockCheck |
-| `LogMessage` | queue | - | Logger | AuditLog |
-| `Orders` | queue | - | CreateOrderProcess | - |
+| Destination | Technology | Kind | Configuration variable | Producers | Consumers |
+|---|---|---|---|---|---|
+| `StockCheck` | JMS | queue | - | InventoryCheck | StockCheck |
+| `LogMessage` | JMS | queue | - | Logger | AuditLog |
+| `Orders` | JMS | queue | - | CreateOrderProcess | - |
 
 
-Broker: `tcp://192.168.1.30:9011`
+EMS broker: `tcp://192.168.1.30:9011`
+
 
 ## Messaging activities
 
-| Process | Activity | Type | Destination | Connection |
-|---|---|---|---|---|
-| StockCheck | JMSReceiveMessage | `bw.jms.receive` | StockCheck | jmsConnection |
-| Logger | SendToAuditLog | `bw.jms.send` | LogMessage | jmsConnection |
-| InventoryCheck | StockCheck | `bw.jms.requestreply` | StockCheck | jmsConnection |
-| CreateOrderProcess | SendOrderDetails | `bw.jms.send` | Orders | jmsConnection |
-| AuditLog | JMSReceiveMessage | `bw.jms.receive` | LogMessage | jmsConnection |
+| Process | Activity | Technology | Type | Direction | Destination | Connection |
+|---|---|---|---|---|---|---|
+| StockCheck | JMSReceiveMessage | JMS | `bw.jms.receive` | receive | StockCheck | jmsConnection |
+| Logger | SendToAuditLog | JMS | `bw.jms.send` | send | LogMessage | jmsConnection |
+| InventoryCheck | StockCheck | JMS | `bw.jms.requestreply` | request / reply | StockCheck | jmsConnection |
+| CreateOrderProcess | SendOrderDetails | JMS | `bw.jms.send` | send | Orders | jmsConnection |
+| AuditLog | JMSReceiveMessage | JMS | `bw.jms.receive` | receive | LogMessage | jmsConnection |
 
 

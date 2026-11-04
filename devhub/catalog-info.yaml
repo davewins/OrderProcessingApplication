@@ -36,7 +36,7 @@ spec:
   lifecycle: "production"
   owner: "group:default/tibco-imported"
   system: "order-management-system"
-  providesApis: ["api:default/orderprocessing-ordersapi"]
+  providesApis: ["api:default/orderprocessing-ordersapi","api:default/orderprocessing-moduleactivator"]
   dependsOn: ["resource:default/ems-192-168-1-30-9011-queue-stockcheck","resource:default/ems-192-168-1-30-9011-queue-logmessage","resource:default/ems-192-168-1-30-9011-queue-orders","resource:default/orderprocessing-api","resource:default/orderprocessing-jmsconnectionresource"]
 ---
 apiVersion: backstage.io/v1alpha1
@@ -60,6 +60,26 @@ spec:
     $text: "https://github.com/davewins/OrderProcessingApplication/blob/backstage-integration/OrderProcessing.module/Service%20Descriptors/OrdersAPI.json"
 ---
 apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: "orderprocessing-moduleactivator"
+  title: "ModuleActivator"
+  description: "WSDL provided by OrderProcessing: OrderProcessing.module/Service Descriptors/ModuleActivator.wsdl"
+  tags: [soap, wsdl, businessworks]
+  tibco.developer.hub/topology:
+    theme:
+      name: 'purple'
+  annotations:
+    backstage.io/source-location: "url:https://github.com/davewins/OrderProcessingApplication/blob/backstage-integration/OrderProcessing.module/Service%20Descriptors/ModuleActivator.wsdl"
+spec:
+  type: wsdl
+  lifecycle: "production"
+  owner: "group:default/tibco-imported"
+  system: "order-management-system"
+  definition:
+    $text: "https://github.com/davewins/OrderProcessingApplication/blob/backstage-integration/OrderProcessing.module/Service%20Descriptors/ModuleActivator.wsdl"
+---
+apiVersion: backstage.io/v1alpha1
 kind: Resource
 metadata:
   name: "ems-192-168-1-30-9011"
@@ -81,7 +101,7 @@ kind: Resource
 metadata:
   name: "ems-192-168-1-30-9011-queue-stockcheck"
   title: "StockCheck"
-  description: "EMS queue StockCheck (named in a process). Produced by InventoryCheck. Consumed by StockCheck"
+  description: "EMS queue StockCheck (named in a process). Produced by InventoryCheck. Consumed by StockCheck."
   tags: [tibco-ems, queue]
   tibco.developer.hub/topology:
     theme:
@@ -91,7 +111,7 @@ metadata:
     tibco.com/producers: "InventoryCheck"
     tibco.com/consumers: "StockCheck"
 spec:
-  type: jms-queue
+  type: "jms-queue"
   owner: "group:default/tibco-imported"
   system: "order-management-system"
   dependsOn: ["resource:default/ems-192-168-1-30-9011"]
@@ -101,7 +121,7 @@ kind: Resource
 metadata:
   name: "ems-192-168-1-30-9011-queue-logmessage"
   title: "LogMessage"
-  description: "EMS queue LogMessage (named in a process). Produced by Logger. Consumed by AuditLog"
+  description: "EMS queue LogMessage (named in a process). Produced by Logger. Consumed by AuditLog."
   tags: [tibco-ems, queue]
   tibco.developer.hub/topology:
     theme:
@@ -111,7 +131,7 @@ metadata:
     tibco.com/producers: "Logger"
     tibco.com/consumers: "AuditLog"
 spec:
-  type: jms-queue
+  type: "jms-queue"
   owner: "group:default/tibco-imported"
   system: "order-management-system"
   dependsOn: ["resource:default/ems-192-168-1-30-9011"]
@@ -121,7 +141,7 @@ kind: Resource
 metadata:
   name: "ems-192-168-1-30-9011-queue-orders"
   title: "Orders"
-  description: "EMS queue Orders (named in a process). Produced by CreateOrderProcess"
+  description: "EMS queue Orders (named in a process). Produced by CreateOrderProcess."
   tags: [tibco-ems, queue]
   tibco.developer.hub/topology:
     theme:
@@ -130,7 +150,7 @@ metadata:
     tibco.com/destination-name: "Orders"
     tibco.com/producers: "CreateOrderProcess"
 spec:
-  type: jms-queue
+  type: "jms-queue"
   owner: "group:default/tibco-imported"
   system: "order-management-system"
   dependsOn: ["resource:default/ems-192-168-1-30-9011"]

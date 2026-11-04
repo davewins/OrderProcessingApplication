@@ -21,15 +21,18 @@ out on purpose.
 
 ## Systems the processes talk to
 
-Activities other than core and general activities, with their connection resource where one is named.
+Activities other than core and general activities, with their technology and connection resource where one is named.
+Values in the last column are literals typed into the activity's input mapping (host, URI, topic, table and similar).
 
-| Process | Activity | Type | Connection | Detail |
-|---|---|---|---|---|
-| StockCheck | JMSReceiveMessage | `bw.jms.receive` | jmsConnection | destination StockCheck |
-| StockCheck | ReplytoJMSMessage | `bw.jms.reply` | - | - |
-| Logger | SendToAuditLog | `bw.jms.send` | jmsConnection | destination LogMessage |
-| InventoryCheck | StockCheck | `bw.jms.requestreply` | jmsConnection | destination StockCheck |
-| CreateOrderProcess | SendOrderDetails | `bw.jms.send` | jmsConnection | destination Orders |
-| AuditLog | JMSReceiveMessage | `bw.jms.receive` | jmsConnection | destination LogMessage |
+| Process | Activity | Technology | Type | Connection | Detail |
+|---|---|---|---|---|---|
+| StockCheck | JMSReceiveMessage | JMS | `bw.jms.receive` | jmsConnection | destination StockCheck;  |
+| StockCheck | ReplytoJMSMessage | JMS | `bw.jms.reply` | - | - |
+| Logger | SendToAuditLog | JMS | `bw.jms.send` | jmsConnection | destination LogMessage;  |
+| InventoryCheck | StockCheck | JMS | `bw.jms.requestreply` | jmsConnection | destination StockCheck;  |
+| CreateOrderProcess | SendOrderDetails | JMS | `bw.jms.send` | jmsConnection | destination Orders;  |
+| AuditLog | JMSReceiveMessage | JMS | `bw.jms.receive` | jmsConnection | destination LogMessage;  |
+
+
 
 
